@@ -1,0 +1,44 @@
+name: Build VoidAI iOS
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'VoidAIiOS/**'
+      - 'index.html'
+      - 'app.js'
+      - 'styles.css'
+      - '.github/workflows/build-ios.yml'
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Build unsigned iOS archive
+        run: |
+          xcodebuild \
+            -project VoidAIiOS/VoidAI.xcodeproj \
+            -scheme VoidAI \
+            -sdk iphoneos \
+            -configuration Release \
+            -archivePath "$PWD/build/VoidAI.xcarchive" \
+            CODE_SIGNING_ALLOWED=NO \
+            archive
+
+      - name: Package archive
+        run: |
+          cd build
+          zip -r VoidAI-iOS-Unsigned-Archive.zip VoidAI.xcarchive
+
+      - name: Upload iOS archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: VoidAI-iOS-Unsigned-Archive
+          path: build/VoidAI-iOS-Unsigned-Archive.zip
+          retention-days: 30
