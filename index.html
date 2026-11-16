@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090914">
+  <meta name="description" content="VoidAI — a calmer, smarter AI workspace.">
+  <title>VoidAI — Your AI, beyond limits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        <span>void<span class="brand-light">ai</span></span>
+        <button class="icon-btn sidebar-close" id="closeSidebar" aria-label="Close menu">×</button>
+      </div>
+      <button class="new-chat" id="newChat"><span class="plus">＋</span> New chat <kbd>⌘ K</kbd></button>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-list">
+        <button class="nav-item active" id="homeNav"><span class="nav-icon">⌂</span> Explore</button>
+        <button class="nav-item" id="historyNav"><span class="nav-icon">◷</span> Recent chats</button>
+      </nav>
+      <div class="side-label recent-label">YOUR CHATS</div>
+      <div class="history-list" id="historyList"><div class="empty-history">Your conversations<br>will appear here.</div></div>
+      <div class="sidebar-bottom">
+        <div class="upgrade-card">
+          <div class="upgrade-orb">✦</div>
+          <div><strong>Make space for ideas</strong><p>Your AI workspace starts here.</p></div>
+        </div>
+        <button class="profile" id="settingsOpen">
+          <div class="avatar">V</div><div class="profile-copy"><strong>VoidAI User</strong><small>Personal workspace</small></div><span class="dots">•••</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="openSidebar" aria-label="Open menu">☰</button>
+        <div class="crumb"><span>VoidAI</span><i>/</i><b id="crumbTitle">Explore</b></div>
+        <div class="top-actions"><span class="status-dot"></span><span class="status-text">Ready to help</span><button class="icon-btn settings-btn" id="settingsTop" aria-label="Settings">⚙</button></div>
+      </header>
+
+      <section class="welcome" id="welcome">
+        <div class="eyebrow"><span class="sparkle">✦</span> YOUR AI WORKSPACE <span class="eyebrow-line"></span></div>
+        <h1>Ideas start in the <span>void.</span></h1>
+        <p class="welcome-sub">A little curiosity can take you anywhere.<br>What would you like to create today?</p>
+        <div class="prompt-grid">
+          <button class="prompt-card" data-prompt="Help me brainstorm a creative project"><span class="prompt-icon purple">✧</span><strong>Brainstorm ideas</strong><small>Turn a thought into a plan</small><span class="card-arrow">↗</span></button>
+          <button class="prompt-card" data-prompt="Explain a difficult topic in simple steps"><span class="prompt-icon blue">⌘</span><strong>Learn something</strong><small>Make complex things clear</small><span class="card-arrow">↗</span></button>
+          <button class="prompt-card" data-prompt="Help me write something engaging"><span class="prompt-icon pink">✎</span><strong>Write with me</strong><small>Find the right words</small><span class="card-arrow">↗</span></button>
+          <button class="prompt-card" data-prompt="Help me build an app or website"><span class="prompt-icon green">⌁</span><strong>Build a project</strong><small>Bring your ideas to life</small><span class="card-arrow">↗</span></button>
+        </div>
+      </section>
+
+      <section class="chat-area" id="chatArea">
+        <div class="messages" id="messages"></div>
+      </section>
+
+      <div class="composer-wrap">
+        <form class="composer" id="chatForm">
+          <textarea id="messageInput" rows="1" placeholder="Message VoidAI..." aria-label="Message VoidAI"></textarea>
+          <div class="composer-bottom">
+            <div class="composer-tools"><span class="model-pill"><span class="model-dot"></span> VoidAI Assistant <span class="chevron">⌄</span></span><span class="hint">AI can make mistakes. Check important info.</span></div>
+            <button class="send-btn" id="sendBtn" type="submit" aria-label="Send message"><span>↑</span></button>
+          </div>
+        </form>
+        <div class="footer-note">Made for curiosity <span>✦</span></div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="settingsModal">
+    <section class="settings-modal">
+      <div class="modal-head"><div><div class="eyebrow">PREFERENCES</div><h2>Settings</h2></div><button class="icon-btn" id="settingsClose">×</button></div>
+      <label for="backendUrl">Backend URL</label>
+      <input id="backendUrl" type="url" placeholder="https://your-api.example.com">
+      <p class="field-help">Connect your own VoidAI backend. Leave blank to use demo mode.</p>
+      <div class="modal-actions"><button class="secondary-btn" id="testBackend">Test connection</button><button class="primary-btn" id="saveSettings">Save changes</button></div>
+      <p class="connection-result" id="connectionResult"></p>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
